@@ -9,13 +9,6 @@ st.title("Dashboard Monitoring Risiko Keterlambatan Kelulusan")
 # Load Data Prediksi
 df = pd.read_csv('hasil_prediksi_kelulusan.csv')
 
-# Sidebar Filters
-prodi = st.sidebar.multiselect("Pilih Program Studi", df['Prodi'].unique(), default=df['Prodi'].unique())
-angkatan = st.sidebar.multiselect("Pilih Angkatan", df['Angkatan'].unique(), default=df['Angkatan'].unique())
-
-# Filter Data
-filtered_df = df[(df['Prodi'].isin(prodi)) & (df['Angkatan'].isin(angkatan))]
-
 # Tabel Mahasiswa + Prediksi Risiko
 st.subheader("Data Mahasiswa + Prediksi Risiko")
 st.dataframe(filtered_df[['Nama Lengkap', 'NIM', 'Prediksi Kelulusan', 'Risiko (%)', 'Faktor Risiko']])
